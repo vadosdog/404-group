@@ -1,21 +1,38 @@
-# Lumen PHP Framework
+# Тестовое задание PHP. 404-group
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+## Задание
+Ваша задача: создать прототип микросервиса, обеспечивающий **эмуляцию**
+отправки сообщений в популярные мессенджеры (Viber, Telegram, WhatsApp).
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+Приложение должно обладать следующим функционалом:
+- прием сообщений по API и отправка их в мессенджеры (с указанием
+идентификатора пользователя для каждого мессенджера);
+- возможность отложенной отправки сообщений по дате/времени;
+- в случае неудачной отправки сообщения, нужно повторить попытку N-ое
+количество раз, но это не должно влиять на доставляемость других
+сообщений;
+- исключение возможности многократной отправки одного и того же
+сообщения (с одним и тем же содержимым) одному получателю;
+- возможность отправки одного сообщения нескольким получателям на
+несколько мессенджеров в рамках одного запроса;
 
-## Official Documentation
+**Важно:**
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+Нужно сделать именно эмуляцию отправки, непосредственную интеграцию с
+мессенджерами делать не нужно.
 
-## Security Vulnerabilities
+Параметры запроса должны проходить валидацию (требования валидации на
+ваше усмотрение).
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Задание нужно выполнить на PHP7 (ждем от Вас использования строгих типов
+аргументов функций “type hinting” и возвращаемых типов) и прислать его нам
+вместе с README, в котором должна быть инструкция по развертыванию/запуску
+и описание API-запросов.
 
-## License
+Основная логика должна быть покрыта тестами.
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Использование фреймворков, пакетов и т.д. — на вашей совести, однако выбор
+необходимо будет обосновать там же в README.
+
+## Решение
+
