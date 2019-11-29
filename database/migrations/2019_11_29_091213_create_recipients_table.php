@@ -17,7 +17,6 @@ class CreateRecipientsTable extends Migration
 			$table->bigIncrements('id');
 			$table->timestamps();
 			$table->integer('message_id')->index();
-			$table->timestamp('send_at')->useCurrent()->index();
 			$table->timestamp('sent_at')->nullable();
 			$table->integer('attempts')->default(0);
 			$table->enum('service', ['whatsup', 'telegram', 'viber']);

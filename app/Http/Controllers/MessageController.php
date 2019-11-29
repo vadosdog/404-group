@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendMessageJob;
 use App\Models\Message;
 use App\Models\Recipient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Queue;
 
 class MessageController extends Controller
 {
@@ -33,6 +35,8 @@ class MessageController extends Controller
 			}
 			$recipient->message_id = $message->id;
 			$recipient->save();
+
+			dispatch((new SendMessageJob($recipient)));
 		}
 		DB::commit();
 
