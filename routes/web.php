@@ -11,6 +11,6 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+/** @var \Laravel\Lumen\Routing\Router $router */
+
+$router->post('/message/', 'MessageController@createMessage');
