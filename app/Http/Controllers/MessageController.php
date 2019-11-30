@@ -45,9 +45,9 @@ class MessageController extends Controller
 			$recipient->message_id = $message->id;
 			$recipient->save();
 
-			$message = NotificationFactory::createNotification($recipient);
+			$notify = NotificationFactory::createNotification($recipient);
 
-			$recipient->notify($message);
+			$recipient->notify($notify);
 		}
 		DB::commit();
 
