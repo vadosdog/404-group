@@ -28,18 +28,13 @@ abstract class MessengerNotification extends Notification implements MessengerNo
 		return $this->recipient->message;
 	}
 
-	public function via($notifiable)
-	{
-		return [MessengerChannel::class];
-	}
-
-	public function toMessenger($notifiable)
-	{
-		return $this->getMessage();
-	}
-
 	public function validate()
 	{
-		//validation rules
+		// TODO: Implement validate() method.
+	}
+
+	public function getRecipient()
+	{
+		return $this->recipient;
 	}
 }

@@ -6,17 +6,17 @@ namespace App\Factories;
 
 use App\Interfaces\MessengerNotificationInterface;
 use App\Models\Recipient;
-use App\Notifications\TelegramMessengerNotification;
-use App\Notifications\ViberMessengerNotification;
-use App\Notifications\WhatsupMessengerNotification;
+use App\Notifications\TelegramNotification;
+use App\Notifications\ViberNotification;
+use App\Notifications\WhatsupNotification;
 use \Exception;
 
 class NotificationFactory
 {
 	protected static $notification = [
-		'viber' => ViberMessengerNotification::class,
-		'whatsup' => WhatsupMessengerNotification::class,
-		'telegram' => TelegramMessengerNotification::class,
+		'viber' => ViberNotification::class,
+		'whatsup' => WhatsupNotification::class,
+		'telegram' => TelegramNotification::class,
 	];
 
 	/**

@@ -6,5 +6,7 @@ namespace App\Interfaces;
 
 interface MessengerNotificationInterface
 {
-	//TODO validate
+	public function validate();
+
+	public function getRecipient();
 }
