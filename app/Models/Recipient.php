@@ -7,6 +7,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Class Recipient
@@ -27,6 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Recipient extends Model
 {
 	use SoftDeletes;
+	use Notifiable;
 
 	protected $fillable = [
 		'message_id',

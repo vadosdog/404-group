@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Factories\NotificationFactory;
 use App\Jobs\SendMessageJob;
 use App\Models\Message;
 use App\Models\Recipient;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Validation\ValidationException;
 
 class MessageController extends Controller
 {
+	/**
+	 * @param Request $request
+	 * @return string
+	 * @throws ValidationException
+	 * @throws Exception
+	 */
 	public function createMessage(Request $request)
 	{
 		$this->validate($request, [
@@ -36,7 +45,9 @@ class MessageController extends Controller
 			$recipient->message_id = $message->id;
 			$recipient->save();
 
-			dispatch((new SendMessageJob($recipient)));
+			$message = NotificationFactory::createNotification($recipient);
+
+			$recipient->notify($message);
 		}
 		DB::commit();
 
