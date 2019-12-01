@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Factories\NotificationFactory;
-use App\Jobs\SendMessageJob;
 use App\Models\Message;
 use App\Models\Recipient;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Queue;
 use Illuminate\Validation\ValidationException;
 
 class MessageController extends Controller

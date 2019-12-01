@@ -18,6 +18,9 @@ class ViberService implements MessengerServiceInterface
 
 	public function send(MessengerNotificationInterface $message)
 	{
+		if (rand(0, 1)) {
+			throw new \Exception();
+		}
 		//EXAMPLE
 		/** @var Recipient $recipient */
 		$recipient = $message->getRecipient();

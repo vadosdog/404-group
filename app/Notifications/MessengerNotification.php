@@ -40,7 +40,7 @@ abstract class MessengerNotification extends Notification implements MessengerNo
 		// TODO: Implement validate() method.
 	}
 
-	public function getRecipient()
+	public function getRecipient(): Recipient
 	{
 		return $this->recipient;
 	}

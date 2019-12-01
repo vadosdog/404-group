@@ -18,7 +18,7 @@ class TelegramService implements MessengerServiceInterface
 
 	public function send(MessengerNotificationInterface $message)
 	{
-		if (true || rand(0, 1)) {
+		if (true) {
 			throw new \Exception();
 		}
 		//EXAMPLE
