@@ -13,6 +13,9 @@ use Illuminate\Notifications\Notification;
 abstract class MessengerNotification extends Notification implements MessengerNotificationInterface, ShouldQueue
 {
 	use Queueable;
+
+	public $tries;
+
 	/**
 	 * @var Recipient
 	 */
@@ -21,6 +24,8 @@ abstract class MessengerNotification extends Notification implements MessengerNo
 	public function __construct(Recipient $recipient)
 	{
 		$this->recipient = $recipient;
+		$this->delay = 10; //config
+		$this->tries = 5; //config
 	}
 
 	protected function getMessage()
