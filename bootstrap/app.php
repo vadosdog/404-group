@@ -80,7 +80,7 @@ $app->singleton(
 
 $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+$app->register(App\Providers\EventServiceProvider::class);
 $app->register(\Illuminate\Notifications\NotificationServiceProvider::class);
 $app->register(\App\Providers\TelegramServiceProvider::class);
 $app->register(\App\Providers\ViberServiceProvider::class);

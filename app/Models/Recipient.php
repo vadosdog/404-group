@@ -23,12 +23,17 @@ use Illuminate\Notifications\Notifiable;
  * @property integer $attempts
  * @property string $service
  * @property string $uid
+ * @property integer $status
  * @package App\Models
  */
 class Recipient extends Model
 {
 	use SoftDeletes;
 	use Notifiable;
+
+	const STATUS_PENDING = 1;
+	const STATUS_SUCCESS = 2;
+	const STATUS_FAILED = 3;
 
 	protected $fillable = [
 		'message_id',
@@ -43,6 +48,11 @@ class Recipient extends Model
 		'id' => 'integer',
 		'message_id' => 'integer',
 		'attempts' => 'integer',
+		'status' => 'integer'
+	];
+
+	protected $attributes = [
+		'status' => self::STATUS_PENDING
 	];
 
 	public function message()

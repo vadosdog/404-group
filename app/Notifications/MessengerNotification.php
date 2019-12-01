@@ -9,10 +9,12 @@ use App\Models\Recipient;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
+use Illuminate\Queue\InteractsWithQueue;
 
 abstract class MessengerNotification extends Notification implements MessengerNotificationInterface, ShouldQueue
 {
 	use Queueable;
+	use InteractsWithQueue;
 
 	public $tries;
 
@@ -42,4 +44,17 @@ abstract class MessengerNotification extends Notification implements MessengerNo
 	{
 		return $this->recipient;
 	}
+
+	public function failed()
+	{
+		$this->recipient->status = Recipient::STATUS_FAILED;
+		$this->recipient->save();
+	}
+
+	public function success()
+	{
+		$this->recipient->status = Recipient::STATUS_SUCCESS;
+		$this->recipient->save();
+	}
+
 }

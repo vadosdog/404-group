@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Recipient;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,7 @@ class CreateRecipientsTable extends Migration
 			$table->timestamps();
 			$table->integer('message_id')->index();
 			$table->timestamp('sent_at')->nullable();
-			$table->integer('attempts')->default(0);
+			$table->enum('status', [Recipient::STATUS_PENDING, Recipient::STATUS_SUCCESS, Recipient::STATUS_FAILED]);
 			$table->enum('service', ['whatsup', 'telegram', 'viber']);
 			$table->string('uid');
 			$table->index(['service', 'uid']);
