@@ -36,3 +36,64 @@
 
 ## Решение
 
+### Выбор фреймоврков и пакетов
+
+* **Lumen** - микрофреймворк для обеспечения Апи с встроенным функционалом очередей 
+* **illuminate/notifications** - пакет обеспечивающий возвомжность удобно управлять уведомлениями через каналы
+* **ramsey/uuid** - вспомогательная библиотека для генерации инкальных полей. Почему то не включена в стандартный lumen
+
+### установка
+
+* Установить зависимости`composer i`
+* Создать БД
+* Скопировать `.env.example` в `.env` указать настройки
+* Запустить миграции `php artisan migrate`
+* запустить сервер `php -S localhost:8000`
+* запустить обработчик очередей `php artisan queue:work` или настроить `supervisor` [example](https://lumen.laravel.com/docs/5.1/queues#supervisor-configuration) 
+
+
+### использование
+
+#### добавление записи
+
+**Method**
+POST
+
+**Path**
+/message/
+
+**Request Data**
+
+| поле | тип | описание | обязательный |
+| --- | --- | --- | --- |
+| message | string | поле сообщения | да |
+| send_at | string (datetime:Y-m-d H:i:s) | время отправки сообщения | нет |
+| recipients | array | массив получателей | да |
+| recipients[*][service] | string | "имя сервиса enum(viber,telegram,whatsup)" | да |
+| recipients[*][uid] | string | идентификатор получателя | да |
+
+Пример
+```
+{
+    "message": "Happy new year!",
+    "send_at": "2019-12-31 23:59:59",
+    "recipients": [
+        {
+            "service": "viber",
+            "uid": "79111111111"
+        },
+        {
+            "service": "whatsup",
+            "uid": "79111111111"
+        },
+        {
+            "service": "telegram",
+            "uid": "79111111111"
+        }
+    ]
+}
+```
+
+**Response**
+
+200 - {"message": "ok"} - сообщение добавлено в очередь

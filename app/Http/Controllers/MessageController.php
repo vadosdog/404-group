@@ -9,6 +9,7 @@ use App\Models\Recipient;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Validation\ValidationException;
@@ -55,6 +56,6 @@ class MessageController extends Controller
 		}
 		DB::commit();
 
-		return 'ok'; //TODO Make resource
+		return response()->json(['message' => 'ok']); //TODO Make resource
 	}
 }
