@@ -24,7 +24,7 @@ class MessageController extends Controller
 	public function createMessage(Request $request)
 	{
 		$this->validate($request, [
-			'send_at' => ['date', 'after_or_equal:now'],
+			'send_at' => ['date_format:Y-m-d H:i:s', 'after_or_equal:now'],
 			'message' => ['required'],
 			'recipients' => ['required', 'array'],
 			'recipients.*.service' => ['required', 'in:whatsup,telegram,viber'], //TODO in validator
@@ -46,6 +46,10 @@ class MessageController extends Controller
 			$recipient->save();
 
 			$notify = NotificationFactory::createNotification($recipient);
+
+			if ($recipient->send_at) {
+				$notify->delay($recipient->send_at);
+			}
 
 			$recipient->notify($notify);
 		}
